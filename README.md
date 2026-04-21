@@ -29,7 +29,7 @@ npm run dev
 ## Reglas implementadas
 
 - Solo un usuario por número de casa.
-- Solo se aceptan números de casa incluidos en `ALLOWED_HOUSE_NUMBERS`.
+- Solo se aceptan números de casa incluidos en la lista de casas autorizadas
 - Franjas de 1,5 horas:
   - 09:00-10:30
   - 10:30-12:00

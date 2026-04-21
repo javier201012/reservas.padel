@@ -1,0 +1,140 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #f2f4f8;
+  color: #1f2937;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+.hidden {
+  display: none;
+}
+
+.auth-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+form {
+  display: grid;
+  gap: 8px;
+}
+
+label {
+  display: grid;
+  gap: 4px;
+  font-size: 14px;
+}
+
+input {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 9px;
+}
+
+button {
+  border: none;
+  border-radius: 6px;
+  padding: 10px 12px;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.active-slot {
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 6px;
+  background: #ecfeff;
+  border: 1px solid #67e8f9;
+}
+
+.hint {
+  margin-top: 6px;
+  color: #334155;
+}
+
+.calendar {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.day-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px;
+  background: #fafafa;
+}
+
+.slots {
+  margin-top: 8px;
+  display: grid;
+  gap: 6px;
+}
+
+.slot {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 8px;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.slot.reserved {
+  background: #fee2e2;
+  border-color: #fecaca;
+}
+
+.slot.mine {
+  background: #dcfce7;
+  border-color: #86efac;
+}
+
+.slot-info {
+  display: grid;
+  gap: 2px;
+}
+
+.small {
+  font-size: 12px;
+  color: #475569;
+}
+
+.message {
+  min-height: 20px;
+  font-weight: 600;
+}

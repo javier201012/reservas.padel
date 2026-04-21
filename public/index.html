@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reservas de Padel</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Reservas de Padel Urbanización</h1>
+
+      <section id="auth-section" class="card">
+        <h2>Acceso</h2>
+        <div class="auth-grid">
+          <form id="register-form">
+            <h3>Crear cuenta</h3>
+            <label>Email <input type="email" name="email" required /></label>
+            <label>Nombre <input type="text" name="name" required /></label>
+            <label>Número de casa <input type="text" name="houseNumber" required /></label>
+            <label>Contraseña <input type="password" name="password" required minlength="6" /></label>
+            <button type="submit">Registrarse</button>
+          </form>
+
+          <form id="login-form">
+            <h3>Iniciar sesión</h3>
+            <label>Número de casa <input type="text" name="houseNumber" required /></label>
+            <label>Contraseña <input type="password" name="password" required /></label>
+            <button type="submit">Entrar</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="app-section" class="card hidden">
+        <div class="top-bar">
+          <div>
+            <h2>Calendario de próximas 30 jornadas</h2>
+            <p id="welcome"></p>
+          </div>
+          <button id="logout-btn">Cerrar sesión</button>
+        </div>
+
+        <div id="active-slot" class="active-slot"></div>
+        <p class="hint">
+          Reglas: máximo 4 reservas/semana, máximo 1 en fin de semana y no se permiten dos sesiones consecutivas.
+        </p>
+        <div id="calendar" class="calendar"></div>
+      </section>
+
+      <p id="message" class="message"></p>
+    </main>
+    <script src="./app.js"></script>
+  </body>
+</html>

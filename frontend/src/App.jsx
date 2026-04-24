@@ -59,6 +59,7 @@ export default function App() {
   const [reservations, setReservations] = useState([]);
   const [active, setActive] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState({ text: "", error: false });
   const [dialog, setDialog] = useState(null);
   const [dialogError, setDialogError] = useState("");
@@ -102,18 +103,18 @@ export default function App() {
     event.preventDefault();
     const form = event.currentTarget;
     const fd = new FormData(form);
+    setSubmitting(true);
     try {
       await api("/api/auth/register", {
         method: "POST",
         body: JSON.stringify(Object.fromEntries(fd.entries())),
       });
-      showMessage("Cuenta creada. Reiniciando automáticamente...");
+      showMessage("Cuenta creada. Entrando...");
       if (form && typeof form.reset === "function") form.reset();
-      setTimeout(() => {
-        window.location.reload();
-      }, 900);
+      setTimeout(() => window.location.reload(), 800);
     } catch (error) {
       showMessage(error.message, true);
+      setSubmitting(false);
     }
   }
 
@@ -121,18 +122,18 @@ export default function App() {
     event.preventDefault();
     const form = event.currentTarget;
     const fd = new FormData(form);
+    setSubmitting(true);
     try {
       await api("/api/auth/login", {
         method: "POST",
         body: JSON.stringify(Object.fromEntries(fd.entries())),
       });
-      showMessage("Sesión iniciada. Reiniciando automáticamente...");
+      showMessage("Sesión iniciada. Cargando...");
       if (form && typeof form.reset === "function") form.reset();
-      setTimeout(() => {
-        window.location.reload();
-      }, 700);
+      setTimeout(() => window.location.reload(), 700);
     } catch (error) {
       showMessage(error.message, true);
+      setSubmitting(false);
     }
   }
 
@@ -195,6 +196,10 @@ export default function App() {
         <h1>Reservas Padel Chopo 4</h1>
       </header>
 
+      {message.text ? (
+        <p className={`feedback ${message.error ? "error" : "ok"}`}>{message.text}</p>
+      ) : null}
+
       {!user ? (
         <section className="auth-grid">
           <form className="panel glass" onSubmit={submitRegister}>
@@ -203,13 +208,13 @@ export default function App() {
             <label>Nombre<input name="name" type="text" required /></label>
             <label>Número de casa<input name="houseNumber" type="text" required /></label>
             <label>Contraseña<input name="password" type="password" minLength={6} required /></label>
-            <button type="submit">Registrarse</button>
+            <button type="submit" disabled={submitting}>{submitting ? "Enviando..." : "Registrarse"}</button>
           </form>
           <form className="panel glass" onSubmit={submitLogin}>
             <h2>Iniciar sesión</h2>
             <label>Número de casa<input name="houseNumber" type="text" required /></label>
             <label>Contraseña<input name="password" type="password" required /></label>
-            <button type="submit">Entrar</button>
+            <button type="submit" disabled={submitting}>{submitting ? "Entrando..." : "Entrar"}</button>
           </form>
         </section>
       ) : (
@@ -291,9 +296,7 @@ export default function App() {
         </section>
       )}
 
-      {message.text ? (
-        <p className={`feedback ${message.error ? "error" : "ok"}`}>{message.text}</p>
-      ) : null}
+
 
       {dialog ? (
         <div className="modal-backdrop">

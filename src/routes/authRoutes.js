@@ -7,6 +7,20 @@ const { requireAuth } = require("../middlewares/auth");
 
 const router = express.Router();
 
+function getCookieOptions() {
+  const sameSite = process.env.COOKIE_SAME_SITE || "lax";
+  const secure = process.env.COOKIE_SECURE
+    ? process.env.COOKIE_SECURE === "true"
+    : sameSite === "none";
+
+  return {
+    httpOnly: true,
+    sameSite,
+    secure,
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  };
+}
+
 function createToken(userId) {
   return jwt.sign({ userId }, process.env.JWT_SECRET || "dev-secret", {
     expiresIn: "7d",
@@ -14,12 +28,7 @@ function createToken(userId) {
 }
 
 function setAuthCookie(res, token) {
-  res.cookie("token", token, {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: false,
-    maxAge: 7 * 24 * 60 * 60 * 1000,
-  });
+  res.cookie("token", token, getCookieOptions());
 }
 
 router.post("/register", async (req, res) => {
@@ -108,7 +117,8 @@ router.post("/login", async (req, res) => {
 });
 
 router.post("/logout", (_req, res) => {
-  res.clearCookie("token");
+  const { maxAge: _maxAge, ...clearOptions } = getCookieOptions();
+  res.clearCookie("token", clearOptions);
   return res.json({ ok: true });
 });
 

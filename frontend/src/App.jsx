@@ -1,5 +1,11 @@
 import { useEffect, useMemo, useState } from "react";
 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "").replace(/\/$/, "");
+
+function buildApiUrl(path) {
+  return `${API_BASE_URL}${path}`;
+}
+
 function toLocalDateLabel(iso) {
   return new Date(iso).toLocaleDateString("es-ES", {
     weekday: "short",
@@ -17,7 +23,7 @@ function toTimeLabel(iso) {
 }
 
 async function api(path, options = {}) {
-  const response = await fetch(path, {
+  const response = await fetch(buildApiUrl(path), {
     headers: { "Content-Type": "application/json" },
     credentials: "include",
     ...options,
@@ -187,7 +193,6 @@ export default function App() {
       <header className="hero">
         <p className="badge">Urbanización · Comunidad</p>
         <h1>Reservas Padel Chopo 4</h1>
-        <p>Gestiona tus turnos con reglas automáticas y un calendario de 30 días en un entorno más alegre.</p>
       </header>
 
       {!user ? (

@@ -3,6 +3,12 @@
   font-family: Inter, Segoe UI, Roboto, Arial, sans-serif;
 }
 
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -10,12 +16,13 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background:
-    radial-gradient(circle at 8% 15%, rgba(134, 239, 172, 0.55) 0%, rgba(134, 239, 172, 0) 34%),
-    radial-gradient(circle at 92% 8%, rgba(110, 231, 183, 0.45) 0%, rgba(110, 231, 183, 0) 30%),
-    radial-gradient(circle at 22% 88%, rgba(187, 247, 208, 0.4) 0%, rgba(187, 247, 208, 0) 36%),
-    linear-gradient(180deg, #f0fdf4 0%, #ecfdf5 42%, #f7fee7 100%);
-  color: #14532d;
+  background-image: url("/padel.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #f8fafc;
+  text-shadow: 0 1px 10px rgba(15, 23, 42, 0.35);
 }
 
 .app {
@@ -27,10 +34,12 @@ body {
 .hero {
   padding: 24px;
   border-radius: 24px;
-  background: linear-gradient(135deg, #16a34a 0%, #22c55e 48%, #10b981 100%);
+  background: linear-gradient(135deg, rgba(240, 253, 244, 0.12) 0%, rgba(220, 252, 231, 0.1) 48%, rgba(209, 250, 229, 0.08) 100%);
+  border: 1px solid rgba(240, 253, 244, 0.34);
+  backdrop-filter: blur(12px);
   color: #f0fdf4;
   margin-bottom: 18px;
-  box-shadow: 0 18px 42px rgba(22, 163, 74, 0.34);
+  box-shadow: 0 18px 42px rgba(20, 83, 45, 0.18);
 }
 
 .hero h1 {
@@ -40,7 +49,7 @@ body {
 
 .badge {
   display: inline-block;
-  background: rgba(255, 250, 240, 0.24);
+  background: rgba(248, 250, 252, 0.14);
   padding: 4px 10px;
   border-radius: 999px;
   margin: 0;
@@ -55,11 +64,12 @@ body {
 }
 
 .panel {
-  background: linear-gradient(180deg, #ffffff, #f0fdf4);
-  border: 1px solid #bbf7d0;
+  background: rgba(240, 253, 244, 0.08);
+  border: 1px solid rgba(240, 253, 244, 0.26);
   border-radius: 18px;
   padding: 18px;
-  box-shadow: 0 10px 28px rgba(20, 83, 45, 0.1);
+  box-shadow: 0 10px 28px rgba(20, 83, 45, 0.14);
+  backdrop-filter: blur(12px);
 }
 
 .glass {
@@ -75,6 +85,7 @@ label {
   display: grid;
   gap: 4px;
   font-size: 14px;
+  color: #f8fafc;
 }
 
 input {
@@ -125,14 +136,15 @@ button:disabled {
 
 .active-card {
   padding: 12px;
-  background: linear-gradient(135deg, #dcfce7, #d1fae5);
-  border: 1px solid #4ade80;
+  background: linear-gradient(135deg, rgba(240, 253, 244, 0.1), rgba(220, 252, 231, 0.08));
+  border: 1px solid rgba(240, 253, 244, 0.26);
   border-radius: 12px;
-  color: #14532d;
+  color: #f8fafc;
+  backdrop-filter: blur(10px);
 }
 
 .rules {
-  color: #166534;
+  color: #f8fafc;
   font-weight: 600;
 }
 
@@ -143,16 +155,18 @@ button:disabled {
 }
 
 .day-card {
-  border: 1px solid #86efac;
-  background: linear-gradient(180deg, #ffffff, #f0fdf4);
+  border: 1px solid rgba(240, 253, 244, 0.24);
+  background: rgba(240, 253, 244, 0.07);
   border-radius: 14px;
   padding: 12px;
+  backdrop-filter: blur(10px);
 }
 
 .day-card h3 {
   margin-top: 4px;
   margin-bottom: 10px;
   text-transform: capitalize;
+  color: #f8fafc;
 }
 
 .slots {
@@ -161,24 +175,36 @@ button:disabled {
 }
 
 .slot {
-  border: 1px solid #86efac;
+  border: 1px solid rgba(240, 253, 244, 0.22);
   border-radius: 12px;
   padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 8px;
+  background: rgba(240, 253, 244, 0.06);
+  backdrop-filter: blur(8px);
 }
 
 .slot p {
   margin: 6px 0 0;
-  color: #166534;
+  color: rgba(248, 250, 252, 0.92);
   font-size: 13px;
 }
 
+.slot strong,
+.panel h2,
+.panel p,
+.toolbar h2,
+.toolbar p,
+.modal h3,
+.modal p {
+  color: #f8fafc;
+}
+
 .slot.reserved {
-  background: #fee2e2;
-  border-color: #f87171;
+  background: rgba(254, 242, 242, 0.12);
+  border-color: rgba(255, 255, 255, 0.22);
 }
 
 .feedback {
@@ -203,7 +229,7 @@ button:disabled {
   display: grid;
   place-items: center;
   font-size: 20px;
-  color: #166534;
+  color: #f8fafc;
 }
 
 .danger {
@@ -221,11 +247,12 @@ button:disabled {
 
 .modal {
   width: min(480px, 100%);
-  background: #ffffff;
-  border: 1px solid #86efac;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid rgba(255, 255, 255, 0.32);
   border-radius: 16px;
   padding: 16px;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+  backdrop-filter: blur(14px);
 }
 
 .modal h3 {

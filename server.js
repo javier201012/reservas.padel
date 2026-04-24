@@ -4,6 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const { connectDB } = require("./src/db");
+const { seedDemoUsers } = require("./src/seedDemoUsers");
 const authRoutes = require("./src/routes/authRoutes");
 const reservationRoutes = require("./src/routes/reservationRoutes");
 
@@ -46,12 +47,13 @@ server.listen(PORT, () => {
 });
 
 connectDB()
-  .then((connected) => {
+  .then(async (connected) => {
     if (!connected) {
       console.warn("MongoDB no configurado todavía. Rellena MONGODB_URI en .env.");
       return;
     }
     console.log("Conectado a MongoDB");
+    await seedDemoUsers();
   })
   .catch((error) => {
     console.error("No se pudo conectar a MongoDB:", error.message);

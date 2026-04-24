@@ -4,6 +4,7 @@ const path = require("path");
 
 module.exports = defineConfig({
   root: path.resolve(__dirname),
+  publicDir: path.resolve(__dirname, "../public"),
   plugins: [react()],
   server: {
     port: 5173,

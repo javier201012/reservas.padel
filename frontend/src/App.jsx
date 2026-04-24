@@ -186,7 +186,7 @@ export default function App() {
     <div className="app">
       <header className="hero">
         <p className="badge">Urbanización · Comunidad</p>
-        <h1>Reservas Padel</h1>
+        <h1>Reservas Padel Chopo 4</h1>
         <p>Gestiona tus turnos con reglas automáticas y un calendario de 30 días en un entorno más alegre.</p>
       </header>
 

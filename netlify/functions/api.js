@@ -14,7 +14,9 @@ module.exports.handler = async (event, context) => {
     return {
       statusCode: 500,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message: "No se pudo inicializar el backend" }),
+      body: JSON.stringify({
+        message: `No se pudo inicializar el backend. ${error.message}`,
+      }),
     };
   }
 
